@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Quản lý người dùng</h2>
+
+<!-- Form lọc và tìm kiếm -->
+<form method="GET" action="/quan_ly_nguoi_dung" style="margin-bottom: 20px;">
+    <label for="vai_tro">Lọc theo vai trò:</label>
+    <select name="vai_tro" style="padding: 5px; margin-right: 20px; border-radius: 5px; border: 1px solid #E98074;">
+        <option value="">Tất cả</option>
+        <option value="Admin" {% if vai_tro == "Admin" %}selected{% endif %}>Admin</option>
+        <option value="user" {% if vai_tro == "user" %}selected{% endif %}>User</option>
+    </select>
+
+    <label for="ten_nguoi_dung">Tìm kiếm tên:</label>
+    <input type="text" name="ten_nguoi_dung" value="{{ ten_nguoi_dung }}" style="padding: 5px; border-radius: 5px; border: 1px solid #E98074;">
+
+    <button type="submit" style="background-color: #E76F51; color: white; padding: 8px 16px; border-radius: 5px; font-weight: bold; cursor: pointer;">Lọc</button>
+</form>
+
+<!-- Danh sách người dùng -->
+<table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; color: #E85A4F;">
+    <thead>
+        <tr>
+            <th>Mã người dùng</th>
+            <th>Tên đăng nhập</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Vai trò</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for nguoi_dung in danh_sach_nguoi_dung %}
+        <tr>
+            <td>{{ nguoi_dung.MaNguoiDung }}</td>
+            <td>{{ nguoi_dung.TenDangNhap }}</td>
+            <td>{{ nguoi_dung.Email }}</td>
+            <td>{{ nguoi_dung.SoDienThoai }}</td>
+            <td>{{ nguoi_dung.VaiTro }}</td>
+            <td>{{ "Hoạt động" if nguoi_dung.TrangThai else "Đã khóa" }}</td>
+            <td>
+                <a href="/sua_nguoi_dung/{{ nguoi_dung.MaNguoiDung }}" style="color: #E85A4F; font-weight: bold;">Sửa</a> | 
+                <a href="/xoa_nguoi_dung/{{ nguoi_dung.MaNguoiDung }}" style="color: #E85A4F; font-weight: bold;">Xóa</a> | 
+                <a href="/khoa_nguoi_dung/{{ nguoi_dung.MaNguoiDung }}" style="color: #E85A4F; font-weight: bold;">{{ "Khóa" if nguoi_dung.TrangThai else "Mở khóa" }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

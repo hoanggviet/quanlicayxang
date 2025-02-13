@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý cây xăng</title>
+    <style>
+        body {
+            background-color: #EAE7DC;
+            color: #E85A4F;
+            font-family: Arial, sans-serif;
+            position: relative; /* Đảm bảo có không gian cho vị trí tuyệt đối */
+        }
+
+        h1 {
+            color: #E98074;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: #fcfafa;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #E76F51;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #E98074;
+            color: #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #E85A4F;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            color: #E85A4F;
+        }
+
+        table th, table td {
+            border: 1px solid #E98074;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #E76F51;
+            color: #ffffff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #D8C3A5;
+        }
+
+        table tr:hover {
+            background-color: #E98074;
+            color: #ffffff;
+        }
+
+        a {
+            color: #E85A4F;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        /* CSS cho nút Đăng xuất */
+        .logout-btn {
+            position: absolute;
+            top: -14px;
+            right: -3px;
+            background-color: #E76F51;
+            color: #ffffff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background-color: #E98074;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quản lý cây xăng</h1>
+        <!-- Nút đăng xuất nằm ở góc trên bên phải -->
+        <button class="logout-btn" onclick="window.location.href='/dang_xuat'">Đăng xuất</button>
+        <nav>
+            <a href="/quan_ly_nguoi_dung">Quản lý người dùng</a>
+            <a href="/them_nguoi_dung">Thêm người dùng</a>
+            <a href="/quan_ly_danh_gia">Quản lý đánh giá</a>
+            <a href="/quan_ly_cay_xang">Quản lý cây xăng</a>
+            <a href="/them_cay_xang">Thêm cây xăng</a>
+            <a href="/lap_bao_cao_thong_ke">Lập báo cáo</a>
+            <a href="/thong_ke_bao_cao">Thống kê báo cáo</a>
+
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 - Quản lý cây xăng</p>
+    </footer>
+</body>
+</html>

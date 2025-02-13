@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Thêm người dùng</h2>
+<form method="POST" style="margin-top: 20px; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+
+    <label for="ten_dang_nhap" style="font-weight: bold;">Tên đăng nhập:</label>
+    <input type="text" name="ten_dang_nhap" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="mat_khau" style="font-weight: bold;">Mật khẩu:</label>
+    <input type="password" name="mat_khau" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="vai_tro" style="font-weight: bold;">Vai trò:</label>
+    <select name="vai_tro" style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+        <option value="Admin">Admin</option>
+        <option value="user">User</option>
+    </select><br>
+
+    <label for="email" style="font-weight: bold;">Email:</label>
+    <input type="email" name="email" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="so_dien_thoai" style="font-weight: bold;">Số điện thoại:</label>
+    <input type="text" name="so_dien_thoai" style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <button type="submit" style="background-color: #E76F51; color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; border: none;">Thêm</button>
+</form>
+{% endblock %}

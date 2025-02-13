@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #EAE7DC;
+    }
+
+    .form-group label {
+        color: #E76F51;
+    }
+
+    .btn {
+        background-color: #E85A4F;
+        color: white;
+    }
+
+    .btn:hover {
+        background-color: #E76F51;
+    }
+</style>
+
+    <div class="container">
+        <h1 class="mt-5" style="color: #E76F51;"></h1>
+
+        <!-- Form Xem Đánh Giá -->
+        <form method="POST" action="{{ url_for('xem_danh_gia') }}" class="mt-4">
+            <div class="form-group">
+                <label for="ma_cay_xang_xem" style="color: #E76F51;">Chọn cây xăng:</label>
+                <select id="ma_cay_xang_xem" name="ma_cay_xang" class="form-control" required>
+                    <option value="">--Chọn cây xăng--</option>
+                    {% for cay_xang in cay_xang_list %}
+                        <option value="{{ cay_xang.MaCayXang }}">{{ cay_xang.TenCayXang }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn mt-4">Xem đánh giá</button>
+        </form>
+
+        {% if ten_cay_xang %}
+            <h3 class="mt-5" style="color: #E76F51;">Đánh giá của cây xăng: {{ ten_cay_xang }}</h3>
+            <!-- Hiển thị danh sách đánh giá -->
+            <ul>
+                {% for danh_gia in danh_gia_list %}
+                    <li>
+                        <strong>Điểm đánh giá:</strong> {{ danh_gia.DiemDanhGia }}<br>
+                        <strong>Bình luận:</strong> {{ danh_gia.BinhLuan }}<br>
+                        <strong>Ngày đánh giá:</strong> {{ danh_gia.NgayDanhGia.strftime('%d/%m/%Y %H:%M') }}<br><br>
+                    </li>
+                {% else %}
+                    <li>Không có đánh giá nào cho cây xăng này.</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <h2>Lập báo cáo thống kê và hiệu suất</h2>
+
+    <!-- Bảng báo cáo thống kê -->
+    <table>
+        <thead>
+            <tr>
+                <th>Mã báo cáo</th>
+                <th>Ngày tạo</th>
+                <th>Loại báo cáo</th>
+                <th>Nội dung báo cáo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bao_cao in bao_cao %}
+            <tr>
+                <td>{{ bao_cao.MaBaoCao }}</td>
+                <td>{{ bao_cao.NgayTaoBaoCao }}</td>
+                <td>{{ bao_cao.LoaiBaoCao }}</td>
+                <td>{{ bao_cao.DuLieuBaoCao }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Biểu mẫu nhập báo cáo -->
+    <form action="/lap_bao_cao_thong_ke" method="POST" style="text-align: center; margin-top: 20px; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; margin-left: auto; margin-right: auto;">
+        <label for="ma_cay_xang" style="display: block; margin-bottom: 8px; font-weight: bold; color: #E76F51; font-size: 16px;">Mã cây xăng:</label>
+        <input type="text" id="ma_cay_xang" name="ma_cay_xang" required style="padding: 10px; margin: 10px 0; width: 90%; font-size: 16px; border: 1px solid #E98074; border-radius: 5px; background-color: #f9f9f9;">
+    
+        <label for="loai_bao_cao" style="display: block; margin-bottom: 8px; font-weight: bold; color: #E76F51; font-size: 16px;">Loại báo cáo:</label>
+        <input type="text" id="loai_bao_cao" name="loai_bao_cao" required style="padding: 10px; margin: 10px 0; width: 90%; font-size: 16px; border: 1px solid #E98074; border-radius: 5px; background-color: #f9f9f9;">
+    
+        <label for="du_lieu_bao_cao" style="display: block; margin-bottom: 8px; font-weight: bold; color: #E76F51; font-size: 16px;">Nội dung báo cáo:</label><br>
+        <textarea id="du_lieu_bao_cao" name="du_lieu_bao_cao" rows="4" cols="50" required style="padding: 10px; margin: 10px 0; width: 90%; font-size: 16px; border: 1px solid #E98074; border-radius: 5px; background-color: #f9f9f9; resize: vertical;"></textarea><br>
+    
+        <input type="submit" value="Gửi báo cáo" style="padding: 10px 20px; background-color: #E76F51; border: none; color: white; font-weight: bold; cursor: pointer; font-size: 16px; border-radius: 5px; transition: background-color 0.3s; margin-top: 20px;">
+    </form>
+    
+{% endblock %}

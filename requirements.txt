@@ -1,0 +1,4 @@
+Phân công công việc : Nguyễn Hoàng Việt 
++ Thu thập dữ liệu 
++ Fontend
++ Backend

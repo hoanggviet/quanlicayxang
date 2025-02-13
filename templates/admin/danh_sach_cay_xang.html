@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Danh sách cây xăng</h2>
+
+<!-- Bảng danh sách cây xăng -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Mã cây xăng</th>
+            <th>Tên cây xăng</th>
+            <th>Địa chỉ</th>
+            <th>Thành phố</th>
+            <th>Vĩ độ</th>
+            <th>Kinh độ</th>
+            <th>Trạng thái</th>
+            <th>Tổng số nhiên liệu</th>
+            <th>Số lượng tiêu thụ</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cay_xang in danh_sach_cay_xang %}
+        <tr>
+            <td>{{ cay_xang.MaCayXang }}</td>
+            <td>{{ cay_xang.TenCayXang }}</td>
+            <td>{{ cay_xang.DiaChi }}</td>
+            <td>{{ cay_xang.ThanhPho }}</td>
+            <td>{{ cay_xang.ViDo }}</td>
+            <td>{{ cay_xang.KinhDo }}</td>
+            <td>{{ "Hoạt động" if cay_xang.TrangThaiHoatDong else "Ngừng hoạt động" }}</td>
+            <td>{{ cay_xang.TongNhienLieu }}</td>
+            <td>{{ cay_xang.NhienLieuTieuThu }}</td>
+            
+            <td>
+                <a href="/sua_cay_xang/{{ cay_xang.MaCayXang }}">Sửa</a> |
+                <a href="/xoa_cay_xang/{{ cay_xang.MaCayXang }}">Xóa</a> |
+                <a href="/nhap_nhien_lieu/{{ cay_xang.MaCayXang }}">Nhập nhiên liệu</a> |
+                <a href="/nhap_nhien_lieu_tieu_thu/{{ cay_xang.MaCayXang }}">Nhập nhiên liệu tiêu thụ</a>
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

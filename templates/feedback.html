@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Đánh giá Cây Xăng: {{ cay_xang.TenCayXang }}</h2>
+    <form method="POST">
+        <div>
+            <label for="ten_cay_xang">Tên cây xăng:</label>
+            <input type="text" id="ten_cay_xang" name="ten_cay_xang" value="{{ cay_xang.TenCayXang }}" readonly required>
+        </div>
+        <div>
+            <label for="ten_nguoi_dung">Tên người dùng:</label>
+            <input type="text" id="ten_nguoi_dung" name="ten_nguoi_dung" placeholder="Nhập tên người dùng" required>
+        </div>
+        <div>
+            <label for="diem_danh_gia">Điểm đánh giá:</label>
+            <input type="number" id="diem_danh_gia" name="diem_danh_gia" min="1" max="5" required>
+        </div>
+        <div>
+            <label for="binh_luan">Bình luận:</label>
+            <textarea id="binh_luan" name="binh_luan" rows="4" placeholder="Nhập bình luận..." required></textarea>
+        </div>
+        <div>
+            <button type="submit">Gửi đánh giá</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Thêm cây xăng</h2>
+<form method="POST" style="margin-top: 20px; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+
+    <label for="ma_cay_xang" style="font-weight: bold;">Mã cây xăng:</label>
+    <input type="text" name="ma_cay_xang" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="ten_cay_xang" style="font-weight: bold;">Tên cây xăng:</label>
+    <input type="text" name="ten_cay_xang" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="dia_chi" style="font-weight: bold;">Địa chỉ:</label>
+    <input type="text" name="dia_chi" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="thanh_pho" style="font-weight: bold;">Thành phố:</label>
+    <input type="text" name="thanh_pho" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="vi_do" style="font-weight: bold;">Vĩ độ:</label>
+    <input type="text" name="vi_do" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="kinh_do" style="font-weight: bold;">Kinh độ:</label>
+    <input type="text" name="kinh_do" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;"><br>
+
+    <label for="trang_thai_hoat_dong" style="font-weight: bold;">Trạng thái hoạt động:</label>
+    <select name="trang_thai_hoat_dong" style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+        <option value="True">Hoạt động</option>
+        <option value="False">Ngừng hoạt động</option>
+    </select><br>
+
+    <button type="submit" style="background-color: #E76F51; color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; border: none;">Thêm</button>
+</form>
+{% endblock %}

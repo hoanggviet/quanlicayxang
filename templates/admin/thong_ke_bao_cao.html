@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Danh sách báo cáo đã gửi</h2>
+
+        <!-- Bảng hiển thị các báo cáo -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã báo cáo</th>
+                    <th>Ngày tạo</th>
+                    <th>Loại báo cáo</th>
+                    <th>Nội dung báo cáo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bao_cao in bao_cao %}
+                <tr>
+                    <td>{{ bao_cao.MaBaoCao }}</td>
+                    <td>{{ bao_cao.NgayTaoBaoCao }}</td>
+                    <td>{{ bao_cao.LoaiBaoCao }}</td>
+                    <td>{{ bao_cao.DuLieuBaoCao }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Nút quay lại -->
+        <div class="back-button">
+            <a href="/lap_bao_cao_thong_ke">Quay lại trang lập báo cáo</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    /* Thiết lập tông màu chủ đạo */
+    body {
+        background-color: #EAE7DC; /* Màu sáng nhạt */
+        color: #E85A4F; /* Màu cam đỏ */
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        color: #E98074; /* Màu cam nhạt */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Thiết kế bảng */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background-color: #fff; /* Màu trắng */
+        color: #E85A4F; /* Màu chữ cam đỏ */
+    }
+
+    table th, table td {
+        border: 1px solid #E98074; /* Đường viền màu cam nhạt */
+        padding: 10px;
+        text-align: center;
+    }
+
+    table th {
+        background-color: #E76F51; /* Màu cam đậm cho tiêu đề */
+        color: #ffffff; /* Màu chữ trắng */
+    }
+
+    table tr:nth-child(even) {
+        background-color: #D8C3A5; /* Màu xám nhạt cho hàng chẵn */
+    }
+
+    table tr:hover {
+        background-color: #E98074; /* Hiệu ứng hover màu cam nhạt */
+        color: #ffffff; /* Chữ trắng khi hover */
+    }
+
+    /* Thiết kế liên kết hành động */
+    a {
+        color: #E85A4F; /* Màu cam đỏ */
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        color: #ffffff; /* Chữ trắng khi hover */
+    }
+
+    /* Định dạng nút hành động */
+    button {
+        background-color: #E76F51; /* Màu cam đậm */
+        color: #ffffff; /* Chữ trắng */
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #E85A4F; /* Màu cam đỏ khi hover */
+        color: #1a1a1a; /* Chữ đen khi hover */
+    }
+
+    /* Bộ lọc và tìm kiếm */
+    #search-container {
+        gap: 15px;
+        margin-bottom: 20px;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    #search-container input, #search-container select {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #E98074;
+        border-radius: 5px;
+        max-width: 100%;
+    }
+
+    #search-container button {
+        background-color: #E76F51;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    #search-container button:hover {
+        background-color: #E85A4F;
+    }
+</style>
+
+<h2>Danh sách cây xăng</h2>
+
+<!-- Bộ lọc và tìm kiếm -->
+<div id="search-container">
+    <input type="text" id="search-input" placeholder="Tìm theo tên hoặc địa chỉ">
+    <select id="filter-status">
+        <option value="">Lọc theo trạng thái</option>
+        <option value="active">Hoạt động</option>
+        <option value="inactive">Ngừng hoạt động</option>
+    </select>
+    <button onclick="filterAndSearch()">Tìm kiếm</button>
+</div>
+
+<!-- Bảng danh sách cây xăng -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Mã cây xăng</th>
+            <th>Tên cây xăng</th>
+            <th>Địa chỉ</th>
+            <th>Thành phố</th>
+            <th>Vĩ độ</th>
+            <th>Kinh độ</th>
+            <th>Trạng thái</th>
+            <th>Tổng số nhiên liệu (L)</th>
+            <th>Số lượng tiêu thụ (L)</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody id="table-body">
+        {% for cay_xang in danh_sach_cay_xang %}
+        <tr>
+            <td>{{ cay_xang.MaCayXang }}</td>
+            <td>{{ cay_xang.TenCayXang }}</td>
+            <td>{{ cay_xang.DiaChi }}</td>
+            <td>{{ cay_xang.ThanhPho }}</td>
+            <td>{{ cay_xang.ViDo }}</td>
+            <td>{{ cay_xang.KinhDo }}</td>
+            <td>{{ "Hoạt động" if cay_xang.TrangThaiHoatDong else "Ngừng hoạt động" }}</td>
+            <td>{{ cay_xang.TongNhienLieu }}</td>
+            <td>{{ cay_xang.NhienLieuTieuThu }}</td>
+            <td>
+                <a href="/sua_cay_xang/{{ cay_xang.MaCayXang }}">Sửa</a> |
+                <a href="/xoa_cay_xang/{{ cay_xang.MaCayXang }}">Xóa</a> |
+                <a href="/nhap_nhien_lieu/{{ cay_xang.MaCayXang }}">Nhập nhiên liệu</a> |
+                <a href="/nhap_nhien_lieu_tieu_thu/{{ cay_xang.MaCayXang }}">Nhập nhiên liệu tiêu thụ</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function filterAndSearch() {
+        // Lấy dữ liệu tìm kiếm
+        const searchInput = document.getElementById('search-input').value.toLowerCase();
+        const status = document.getElementById('filter-status').value;
+
+        // Lọc các hàng trong bảng
+        const rows = document.querySelectorAll('#table-body tr');
+        rows.forEach(row => {
+            const nameText = row.children[1].textContent.toLowerCase();
+            const addressText = row.children[2].textContent.toLowerCase();
+            const statusText = row.children[6].textContent.toLowerCase();
+
+            const matchSearch =
+                searchInput === "" ||
+                nameText.includes(searchInput) ||
+                addressText.includes(searchInput);
+
+            const matchStatus =
+                status === "" ||
+                (status === "active" && statusText.includes("hoạt động")) ||
+                (status === "inactive" && statusText.includes("ngừng hoạt động"));
+
+            if (matchSearch && matchStatus) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+
+    
+</script>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Sửa thông tin người dùng</h2>
+<form method="POST" style="margin-top: 20px; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+
+    <label for="ten_dang_nhap" style="font-weight: bold;">Tên đăng nhập:</label>
+    <input type="text" name="ten_dang_nhap" value="{{ nguoi_dung.TenDangNhap }}" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="mat_khau" style="font-weight: bold;">Mật khẩu:</label>
+    <input type="password" name="mat_khau" value="{{ nguoi_dung.MatKhau }}" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="vai_tro" style="font-weight: bold;">Vai trò:</label>
+    <select name="vai_tro" style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+        <option value="Admin" {% if nguoi_dung.VaiTro == "Admin" %}selected{% endif %}>Admin</option>
+        <option value="Khách hàng" {% if nguoi_dung.VaiTro == "Khách hàng" %}selected{% endif %}>Khách hàng</option>
+    </select>
+    <br>
+
+    <label for="email" style="font-weight: bold;">Email:</label>
+    <input type="email" name="email" value="{{ nguoi_dung.Email }}" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="so_dien_thoai" style="font-weight: bold;">Số điện thoại:</label>
+    <input type="text" name="so_dien_thoai" value="{{ nguoi_dung.SoDienThoai }}" style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <button type="submit" style="background-color: #E76F51; color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; border: none;">Cập nhật</button>
+</form>
+{% endblock %}

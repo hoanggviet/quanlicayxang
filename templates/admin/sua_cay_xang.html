@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Sửa cây xăng: {{ cay_xang.TenCayXang }}</h2>
+
+<form action="/sua_cay_xang/{{ cay_xang.MaCayXang }}" method="POST" style="margin-top: 20px; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+
+    <label for="ten_cay_xang" style="font-weight: bold;">Tên cây xăng:</label>
+    <input type="text" id="ten_cay_xang" name="ten_cay_xang" value="{{ cay_xang.TenCayXang }}" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="dia_chi" style="font-weight: bold;">Địa chỉ:</label>
+    <input type="text" id="dia_chi" name="dia_chi" value="{{ cay_xang.DiaChi }}" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="thanh_pho" style="font-weight: bold;">Thành phố:</label>
+    <input type="text" id="thanh_pho" name="thanh_pho" value="{{ cay_xang.ThanhPho }}" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="vi_do" style="font-weight: bold;">Vĩ độ:</label>
+    <input type="text" id="vi_do" name="vi_do" value="{{ cay_xang.ViDo }}" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="kinh_do" style="font-weight: bold;">Kinh độ:</label>
+    <input type="text" id="kinh_do" name="kinh_do" value="{{ cay_xang.KinhDo }}" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="trang_thai" style="font-weight: bold;">Trạng thái hoạt động:</label>
+    <select id="trang_thai" name="trang_thai" required style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+        <option value="True" {% if cay_xang.TrangThaiHoatDong %}selected{% endif %}>Hoạt động</option>
+        <option value="False" {% if not cay_xang.TrangThaiHoatDong %}selected{% endif %}>Ngừng hoạt động</option>
+    </select>
+    <br>
+
+    <label for="tong_nhien_lieu" style="font-weight: bold;">Tổng số nhiên liệu:</label>
+    <input type="number" id="tong_nhien_lieu" name="tong_nhien_lieu" value="{{ cay_xang.TongNhienLieu }}" style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="nhien_lieu_tieu_thu" style="font-weight: bold;">Số lượng nhiên liệu tiêu thụ:</label>
+    <input type="number" id="nhien_lieu_tieu_thu" name="nhien_lieu_tieu_thu" value="{{ cay_xang.NhienLieuTieuThu }}" style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">
+    <br>
+
+    <label for="dich_vu" style="font-weight: bold;">Dịch vụ:</label>
+    <textarea id="dich_vu" name="dich_vu" rows="4" cols="50" placeholder="Nhập các dịch vụ của cây xăng" style="padding: 8px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #E98074;">{{ cay_xang.DichVu }}</textarea>
+    <br>
+
+    <button type="submit" style="background-color: #E76F51; color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; border: none;">Cập nhật</button>
+</form>
+{% endblock %}
